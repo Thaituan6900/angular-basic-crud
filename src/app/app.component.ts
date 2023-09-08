@@ -35,8 +35,20 @@ export class AppComponent {
     private _dialog: MatDialog,
     private _empService: EmployeeService,
     private _coreService: CoreService
-  )
-  {}
+  ) {}
+
+  pageSizeOptions = [5, 10, 25];
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput
+        .split(',')
+        .map((str) => +str);
+    }
+  }
 
   ngOnInit(): void {
     this.getEmployeeList();
